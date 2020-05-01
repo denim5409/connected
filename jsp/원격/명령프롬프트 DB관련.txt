@@ -1,0 +1,425 @@
+Microsoft Windows [Version 10.0.18362.720]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\denim3>mysql -u root -p
+Enter password: *****
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.3.22-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+4 rows in set (0.012 sec)
+
+MariaDB [(none)]> use mysql;
+Database changed
+MariaDB [mysql]> create database exam;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [mysql]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| exam               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [mysql]> grant all privileges on exam.* to exam@localhost identified by '1234';
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [mysql]> flush privileges;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [mysql]> exit
+Bye
+
+C:\Users\denim3>mysql -u exam -p
+Enter password: ****
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.3.22-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| exam               |
+| information_schema |
+| test               |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [(none)]> use exam;
+Database changed
+MariaDB [exam]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [exam]> create table member (
+    -> no int not null auto_increment,
+    -> id varchar(50) not null,
+    -> passwd varchar(50) not null,
+    -> name varchar(50) not null,
+    -> primary key (),
+    -> unique (no)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '),
+unique (no)
+)' at line 6
+MariaDB [exam]> create table member (
+    -> no int not null auto_increment,
+    -> id varchar(50) not null,
+    -> passwd varchar(50) not null,
+    -> name varchar(50) not null,
+    -> primary key (id),
+    -> unique (no)
+    -> );
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [exam]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| exam               |
+| information_schema |
+| test               |
++--------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [exam]> show tables;
++----------------+
+| Tables_in_exam |
++----------------+
+| member         |
++----------------+
+1 row in set (0.000 sec)
+
+MariaDB [exam]> desc member;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| no     | int(11)     | NO   | UNI | NULL    | auto_increment |
+| id     | varchar(50) | NO   | PRI | NULL    |                |
+| passwd | varchar(50) | NO   |     | NULL    |                |
+| name   | varchar(50) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.042 sec)
+
+MariaDB [exam]> select * from member;
+Empty set (0.000 sec)
+
+MariaDB [exam]> insert into member values (null, 'hong', '1234', '홍길동');
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [exam]> select * from member;
++----+------+--------+--------+
+| no | id   | passwd | name   |
++----+------+--------+--------+
+|  1 | hong | 1234   | 홍길동 |
++----+------+--------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [exam]> select * from member;
++----+------+--------+--------+
+| no | id   | passwd | name   |
++----+------+--------+--------+
+|  1 | hong | 1234   | 홍길동 |
+|  2 | kim  | 1111   | 김철수 |
++----+------+--------+--------+
+2 rows in set (0.000 sec)
+
+MariaDB [exam]> select * from member;
++----+------+--------+--------+
+| no | id   | passwd | name   |
++----+------+--------+--------+
+|  1 | hong | 1234   | 홍길동 |
+|  2 | kim  | 1111   | 김철수 |
+|  6 | lee  | 2222   | 이영희 |
++----+------+--------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [exam]> select * from member;
++----+------+--------+--------+
+| no | id   | passwd | name   |
++----+------+--------+--------+
+|  7 | choi | 3333   | 최대운 |
+|  1 | hong | 1234   | 홍길동 |
+|  2 | kim  | 1111   | 김철수 |
+|  6 | lee  | 2222   | 이영희 |
++----+------+--------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [exam]> desc member
+    -> ;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| no     | int(11)     | NO   | UNI | NULL    | auto_increment |
+| id     | varchar(50) | NO   | PRI | NULL    |                |
+| passwd | varchar(50) | NO   |     | NULL    |                |
+| name   | varchar(50) | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.028 sec)
+
+MariaDB [exam]> create table member2 (
+    -> no int not null auto_increment,
+    -> id varchar(50) not null,
+    -> passwd varchar(50) not null,
+    -> name varchar(50) not null,
+    -> email varchar(50) not null,
+    -> phone varchar(50) not null,
+    -> primary key (id),
+    -> unique (no)
+    -> );
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [exam]> select * from member2;
+Empty set (0.011 sec)
+
+MariaDB [exam]> select * from member2;
++----+------+--------+------+-------------+---------------+
+| no | id   | passwd | name | email       | phone         |
++----+------+--------+------+-------------+---------------+
+|  1 | aaaa | 1111   | aaaa | aaa@aaa.com | 010-1111-2222 |
++----+------+--------+------+-------------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [exam]> create table sungjuk (
+    -> no int not null auto_increment,
+    -> name varchar(50) not null,
+    -> kor int not null,
+    -> eng int not null,
+    -> mat int not null,
+    -> unique (no)
+    -> );
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [exam]> select * from sungjuk;
+Empty set (0.009 sec)
+
+MariaDB [exam]> desc sungjuk;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| no    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | NO   |     | NULL    |                |
+| kor   | int(11)     | NO   |     | NULL    |                |
+| eng   | int(11)     | NO   |     | NULL    |                |
+| mat   | int(11)     | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+5 rows in set (0.028 sec)
+
+MariaDB [exam]>
+
+
+투표 
+1. 반장    홍길동  김철수  이영희
+2. 부반장 이승엽  박찬호  김병현
+3. 회장    이문세  안성기  이연복
+
+확인 
+exForm.jsp
+exFormProc.jsp
+
+create table boss_sub (
+no int not null auto_increment,
+boss_1 varchar(10) not null,
+boss_2 varchar(10) not null,
+boss_3 varchar(10) not null,
+boss_4 varchar(10) not null,
+boss_5 varchar(10) not null,
+primary key (no)
+);
+
+======================
+쇼핑몰
+product
+-chuga.jsp
+-chugaProc.jsp
+-list.jsp
+DB설계 =모델링
+-옷
+카테고리
+상품명
+가격
+제조사
+create table product (
+no int not null auto_increment,
+cate varchar(50) not null,
+pname varchar(50) not null,
+price int not null,
+company varchar(50) not null,
+wdate datetime default now(),
+primary key (no)
+);
+
+create table sihum (
+no int not null auto_increment,
+quest1 varchar(30) not null,
+quest2 varchar(30) not null,
+quest3 varchar(30) not null,
+quest4 varchar(30) not null,
+quest5 varchar(30) not null,
+ans1 varchar(10) not null,
+ans2 varchar(10) not null,
+ans3 varchar(10) not null,
+ans4 varchar(10) not null,
+ans5 varchar(10) not null,
+tot int not null,
+wdate datetime default now(),
+primary key (no)
+);
+
+create table member (
+id varchar(50) not null,
+passwd varchar(50) not null,
+name varchar(50) not null,
+phone varchar(50) not null,
+job varchar(50) not null,
+wdate datetime default now(),
+primary key (id)
+);
+
+create table product (
+no int not null auto_increment,
+cate varchar(50) not null,
+pname varchar(50) not null,
+price int not null,
+wdate datetime default now(),
+primary key (no)
+);
+
+create table sungjuk (
+no int not null auto_increment,
+name varchar(50) not null,
+sname varchar(50) not null,
+mun_1 varchar(50) not null,
+mun_2 varchar(50) not null,
+mun_3 varchar(50) not null,
+mun_4 varchar(50) not null,
+mun_5 varchar(50) not null,
+jumsu int not null,
+wdate datetime default now(),
+primary key (no)
+);
+
+create table product (
+no int not null auto_increment,
+cate varchar(50) not null,
+pname varchar(50) not null,
+price int not null,
+wdate datetime default now(),
+primary key (no)
+);
+
+alter table member drop column wdate;
+alter table product drop column wdate;
+alter table sungjuk drop column wdate;
+
+alter table member add column wdate datetime default now();
+alter table product add column wdate datetime default now();
+alter table sungjuk add column wdate datetime default now();
+
+update member set wdate = '2020-04-14 10:10:24' where id = 'hong';
+update member set wdate = '2020-04-14 10:10:58' where id = 'jung';
+update member set wdate = '2020-04-14 10:11:19' where id = 'kang';
+
+update product set wdate = '2020-04-14 10:31:47' where no = '1';
+update product set wdate = '2020-04-14 10:32:23' where no = '2';
+update product set wdate = '2020-04-14 10:32:56' where no = '3';
+
+update sungjuk set wdate = '2020-04-14 10:48:07' where no = '1';
+update sungjuk set wdate = '2020-04-14 10:48:53' where no = '2';
+update sungjuk set wdate = '2020-04-14 10:49:34' where no = '3';
+
+===========================
+오라클 - 프로그램
+connect system
+show user;
+
+명령프롬프트
+sqlplus
+select * from dba_users;
+desc dba_users;
+
+mysql 에서는 스키마 = 데이터베이스
+oracle에서는 다름
+스키마 = 사용자계정
+
+create user SAMPLE identified by 1234
+default tablespace users
+temporary tablespace temp;
+
+grant connect, resource, dba to SAMPLE;
+
+conn systm/aaaa  사용자 바꿀때
+
+
+create table test (
+id char(50) not null,
+name varchar2(50) not null,
+price number(8,2) not null, -- 전체 8자길이의 숫자 중 2자는 소수점
+board clob -- 게시판 용도-
+wdate date default sysdate -- 별도 입력없이 sysdate를 기본값으로 넣는다. 
+
+);
+
+-- primary key : 중복허용안함, null 허용안함, 2개의 열을 하나의 기본키로 사용가능하다.
+-- foreign key
+-- unique : 중복허용안함. null허용, 테이블당 여러개를 지정할 수 있다.
+-- check 제약조건 : 입력하는 데이타를 체크하는 기능
+-- default 정의 : 기본적으로 이 값을 넣어라 라는 의미
+-- null 값 허용
+
+
+alter table 테이블명
+add 필드명 varchar2(20); -- 새로운 필드 추가
+
+alter table 테이블명
+modify 필드명 varchar2(20); -- 기존 필드 수정(타입에 주의할 것. 문자 -> 숫자변경 불가
+
+alter table 테이블명
+rename column 예전필드명 to 새로운필드명 varchar2(20); -- 기존 필드 이름 변경
+
+alter table 테이블명
+drop column 필드명; -- 기존 필드 삭제
+
+rename 예전테이블명 to 새로운테이블명;
+
+명령문 : 3가지 종류가 있다.
+
+DDL
+Date Definition Language(데이터 정의어)
+테이블과 인덱스의 구조를 관리하는 언어
+create, drop, alter 등
+
+DML : 개발자가 가장 많이 사용
+Date Manipulation Language(데이터 조작어)
+테이블 등에 데이터를 저장, 수정, 삭제, 추출 등을 처리하는 언어
+insert, update, delete, select 등
+반드시 commit를 써야함.
+
+DCL
+Data Control Language(데이터 제어어)
+사용자 권한, 작업의 취소 등을 처리할 수 있는 언어
+grant, revoke, commit, rollback 등
+
+
