@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html long='ko'>
+<head>
+<meth charset="UTF-8">
+<title>HTML_기본구조</title>
+</head>
+<body>
+
+    <!-- <form name="form1" method="POST">
+        Enter a date before 1980-01-01:
+        <input type="date" name="bday" max="1979-12-31"><br>
+        Enter a date after 2000-01-01:
+        <input type="date" name="bday" min="2000-01-02"><br>
+        <input type="submit" value="실행하기">
+    </form>
+    <br>
+    <form name="form2" method="POST">
+        E-mail : 
+            <input type="email" name="email"><br>
+            <input type="submit" value="실행하기"><br>
+    </form>
+    <br>
+
+    <form name="form3" method="POST">
+        Select a file : 
+            <input type="file" name="MyFile"><br>
+            <input type="submit" value="실행하기"><br>
+    </form>
+    <br>
+
+    <form name="form4" method="POST">
+        Birthday (month and year) : 
+            <input type="month" name="bdaymonth"><br>
+            <input type="submit" value="실행하기"><br>
+    </form>
+    <br>
+
+    <form name="form5" method="POST">
+        Quantity : 
+            <input type="number" name="points" min="0" max="100"
+            step="1" value="30"><br>
+            <input type="submit" value="실행하기"><br>
+    </form>
+    <br>
+
+    <form name="form6" method="POST"
+    oninput="x.value=parseInt(a.value)+pasreInt(b.value)">
+    0
+    <input type="range" id="a" name="a" value="50">
+    100 + 
+    <input type="number" id="b" name="b" value="50">
+    =
+    <output name="x" for="a b"></output><br>
+    <input type="submit" value="실행하기"><br>
+    </form>
+    <br>
+
+    <form name="form7" method="POST">
+        Select a time : 
+            <input type="time" name="usr_time"><br>
+            <input type="submit" value="실행하기"><br>
+    </form>
+    <br>
+
+    <form name="form8" method="POST">
+        Select a homepage : 
+            <input type="url" name="homepage"><br>
+            <input type="submit" value="실행하기"><br>
+    </form>
+    <br>
+
+    <form name="form9" method="POST">
+        Select a week : 
+            <input type="week" name="usr_week"><br>
+            <input type="submit" value="실행하기"><br>
+    </form>
+    <br> -->
+
+    <form name="form1" autocomplete="on" 
+    action="act01.jsp" formenctype="multipart/form-data">
+        First name1 : <br>
+        <input type="text" name="firstname1" value="John" readonly>
+        <br>
+
+        <input type="hidden" name="firstname2" value="John" readonly>
+
+        First name3 : <br>
+        <input type="text" name="firstname3" value="John" disabled>
+        <br>
+
+        First name4 : <br>
+        <input type="text" name="firstname4" value="" size="40"
+        autofocus placeholder="이름을 입력하세요." required>
+        <br>
+
+        First name5 : <br>
+        <input type="text" name="firstname5" value="John"
+        maxlength="10" style="width:300px; height:50x; font-size:30px;">
+        <br><br>
+
+        취미:<br>
+        <input type="checkbox" name="hobby" value="낚시" checked>낚시&nbsp;
+        <input type="checkbox" name="hobby" value="바둑">바둑&nbsp;
+        <input type="checkbox" name="hobby" value="골프" checked>골프&nbsp;
+        <input type="checkbox" name="hobby" value="독서">독서&nbsp;
+        <input type="checkbox" name="hobby" value="영화감상">영화감상&nbsp;
+        <br><br>
+
+        E-mail : 
+        <input type="email" name="email" autocomplete="off">
+        <br>
+
+
+        <input type="submit" value="전송하기1">&nbsp;&nbsp;
+        <input type="submit" value="전송하기2" formaction="act2.jsp">
+        &nbsp;&nbsp;
+        <input type="submit" value="전송하기3" formnovalidate>&nbsp;&nbsp;
+        <input type="submit" value="전송하기4" formtarget="_blank">
+        <br>
+        <input type="image" src="daum.png">
+
+        
+    </form>
+
+    Last Name : 
+    <input type="text" name="lname" form="form1"><br>
+
+
+</body>
+</html>

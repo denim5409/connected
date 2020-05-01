@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html long='ko'>
+<head>
+<meth charset="UTF-8">
+<title>HTML_기본구조</title>
+</head>
+<body>
+
+    <form name="imsi01" method="post" action="20Proc.jsp">
+
+        <input type="hidden" name="birth_day" value="1988-12-21"><br>
+        ID : <input type="text" name="id"><br>
+        Password : <input type="password" name="pwd"><br>
+        Name : <input type="text" name="name"><br>
+        Age : <input type="text" name="age"><br>
+        Phone : <input type="text" name="phone"><br>
+        Gender : <input type="radio" name="gender1" value="남자" checked>남자
+                  &nbsp;&nbsp;
+                 <input type="radio" name="gender1" value="여자">여자<br>
+        Gender : <select name="gender2">
+                    <option value="남자">남자</option>
+                    <option value="여자" selected>여자</option>
+                </select>
+                <br>
+
+        본문내용 :<br> 
+        <textarea name="content" style="width:300px; height: 100px;">안녕하세요
+        </textarea>
+        <br>
+<!-- =========================================== -->
+<hr>
+<input list="browsers" name="aaa">
+    <datalist id="browsers">
+        <option value="Internet Explorer">
+        <option value="Firefox">
+        <option value="Chrome">
+        <option value="Opera">
+        <option value="Safari">
+    </datalist>
+
+<hr>
+<input type="color" name="c">
+<br>
+<input type="date" name="d">
+<br>
+<input type="datetime-local">
+<br>
+<input type="email">
+<br>
+<input type="file">
+<br>
+<input type="month">
+<br>
+<input type="number">
+<br>
+<input type="search">
+<br>
+<input type="tel" name="phone2" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+<br>
+<input type="time">
+<br>
+<input type="url">
+<br>
+<input type="week">
+
+
+
+<!--  =========================================== -->
+<br><br>
+
+        <input type="submit" value="가입하기1">&nbsp;&nbsp;&nbsp;
+        <input type="button" value="가입하기2">&nbsp;&nbsp;&nbsp;
+        <button onclick="alert('클릭했네요')">가입하기3</button>&nbsp;&nbsp;&nbsp;
+        <input type="reset" value="초기화하기"><br>
+        <input type="image" src="daum.png">
+    </form>
+
+
+
+
+</body>
+</html>
