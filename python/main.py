@@ -1,14 +1,25 @@
 from tkinter import*
 import tkinter
-# import tkinter.ttk
+import tkinter.ttk
 import math
 from tkinter import messagebox
 from tkinter import ttk
+import tkinter as tk
+import tkinter.ttk as ttk
+import os
+import PIL
+from PIL import Image,ImageTk
+import datetime
+import subprocess
+# import pront2
+# from pront2 import *
+import numpy as np
+import cv2
 
 window = Tk()
 window.title("로그인화면")
 window.geometry('600x900')
-
+window.resizable(width=TRUE, height = TRUE);
 
 mainframe=Frame(window)
 mainframe.pack(fill = "both", expand=YES)
@@ -18,6 +29,14 @@ def clickMe():
         messagebox.showinfo("로그인성공", str1.get()+ "님 환영합니다!")
         mainframe.destroy()
         second()
+    elif str1.get() == 'b' and str2.get() == 'b' :
+        messagebox.showinfo("로그인성공", "관리자님 환영합니다!")
+        mainframe.destroy()
+        third()
+    elif str1.get() == 'c' and str2.get() == 'c' :
+        messagebox.showinfo("로그인성공", "관리자님 환영합니다!")
+        mainframe.destroy()
+        forth()
     else:
         messagebox.showinfo("로그인실패", "ID, 비밀번호가 잘못되었습니다.")
 str1 = StringVar()
@@ -32,9 +51,6 @@ L2.pack(side=LEFT)
 textbox2.pack(side=LEFT)
 action=ttk.Button(mainframe, text="Click Me", command=clickMe)
 action.pack(side=LEFT)
-
-
-
 
 def second():
       #-top_frame
@@ -127,7 +143,6 @@ def second():
 
     treeview.tag_bind("tag1", sequence="<<TreeviewSelect>>", callback=cc)
 
-
     print()
     label9=tkinter.Label(frame1, text="그래프로 보기")
     label9.pack()
@@ -172,6 +187,72 @@ def second():
     label10=tkinter.Label(frame2, text="표정별 기분상태")
     label10.pack()
 
+def third() : 
+    notebook=tkinter.ttk.Notebook(window, width=390, height=390)
+    notebook.pack()
+
+    frame1=tkinter.Frame(window)
+    notebook.add(frame1, text="실시간")
+
+
+    bstart = ttk.Button(frame1, text="실시")
+    bstart.pack()
+
+    label1=tkinter.Label(frame1,text='cam')
+    label1.place(relwidth = 1, relheight=1)
+    cap = cv2.VideoCapture(0)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 450)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 450)
+    def show_frame():
+        _, frame = cap.read()
+        frame = cv2.flip(frame, 1)
+        cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        img = PIL.Image.fromarray(cv2image)
+        imgtk = ImageTk.PhotoImage(image=img)
+        label1.imgtk = imgtk
+        label1.configure(image=imgtk)
+        label1.after(10, show_frame)
+
+    show_frame()
+
+    frame2=tkinter.Frame(window)
+    notebook.add(frame2, text="학생")
+
+    label2=tkinter.Label(frame2, text="페이지2의 내용")
+    label2.pack()
+
+def forth():
+    def silsigan():
+        cap = cv2.VideoCapture(0)
+
+        while(True):
+            # Capture frame-by-frame
+            ret, frame1 = cap.read()
+
+            # Our operations on the frame come here
+            gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
+
+            # Display the resulting frame
+            cv2.imshow('frame1',gray) #imshow = 이미지출력
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        # When everything done, release the capture
+        # cap.release()
+        cv2.destroyAllWindows()
+
+    notebook=tkinter.ttk.Notebook(window, width=390, height=390)
+    notebook.pack()
+
+    frame1 = Frame(window)
+    notebook.add(frame1, text="실시간")
+    notebook.pack()
+
+    frame2 = Frame(window)
+    notebook.add(frame2, text="두번째탭")
+    notebook.pack()
+
+    button1 = Button(frame1,text="실시간 영상",command=silsigan)
+    button1.pack()
 
 
 window.mainloop();
