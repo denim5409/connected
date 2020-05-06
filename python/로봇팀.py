@@ -13,26 +13,23 @@ import subprocess
 import numpy as np
 import cv2
 
-class Login: #로그인 전용 클래스 생성
-    def __init__(self, window): #init으로 로그인화면 초기화 진행
-        self.window = window #밑에서 받아올 윈도우를 self.window로 지정
-        self.mainframe = Frame(self.window) #self.window의 frame을 self.mainframe으로 지정
-        self.mainframe.pack(fill = "both", expand=YES) #self.mainframe을 pack형태로 나타냄
-        self.str1 = StringVar() #String 타입의 self.str1을 생성
-        self.str2 = StringVar() #String 타입의 self.str2를 생성
-        self.L1 = Label(self.mainframe, text="ID : ") #Self.mainframe안에 "ID : "문자값을 가진 self.L1이라는 Label을 생성
-        self.L2 = Label(self.mainframe, text="비밀번호 : ") #Self.mainframe안에 "ID : "문자값을 가진 self.L1이라는 Label을 생성
+class Login:
+    def __init__(self, window):
+        self.window = window
+        self.mainframe = Frame(self.window)
+        self.mainframe.pack(fill = "both", expand=YES)
+        self.str1 = StringVar()
+        self.str2 = StringVar()
+        self.L1 = Label(self.mainframe, text="ID : ")
+        self.L2 = Label(self.mainframe, text="비밀번호 : ")
         self.textbox1 = Entry(self.mainframe, width=15, textvariable=self.str1)
-        #Self.mainframe안에 텍스트창을 만들고, self.str1값으로 받아옴
         self.textbox2 = Entry(self.mainframe, width=15, textvariable=self.str2)
-        #Self.mainframe안에 텍스트창을 만들고, self.str2값으로 받아옴
-        self.L1.pack(side=LEFT) #L1 라벨을 나타냄
-        self.textbox1.pack(side=LEFT) #textbox1 텍스트창을 나타냄
-        self.L2.pack(side=LEFT) #L2 라벨을 나타냄
-        self.textbox2.pack(side=LEFT) #textbox2 텍스트창을 나타냄
+        self.L1.pack(side=LEFT)
+        self.textbox1.pack(side=LEFT)
+        self.L2.pack(side=LEFT)
+        self.textbox2.pack(side=LEFT)
         self.action=ttk.Button(self.mainframe, text="로그인", command=self.clickMe)
-        #self.mainframe안에 "로그인" 적힌 버튼을 action이라는 이름으로 생성하되, 클릭시 self.clickMe 함수를 실행시킴
-        self.action.pack(side=LEFT) #action(버튼)을 나타냄
+        self.action.pack(side=LEFT)
         
     def clickMe(self):#clickMe라는 함수를 생성함
         if self.str1.get() == 'a' and self.str2.get() == 'a' : 
@@ -97,7 +94,7 @@ class usermode :
         # print(teacher)
         label6 = Label(frame_2, text="연락처 : 010-1111-2222")
         phone = StringVar
-        print(phone)
+        #폰삭제했습니다.
 
         #출력창
         label7.pack(side = TOP);
@@ -213,6 +210,15 @@ class usermode :
 
     #표정 끝===================================================================================
 
+# class logout2 :    
+#     def evend_logout(event):
+#         usermode.second.bottom_frame.destroy()
+#         usermode.second.top_frame.destroy()
+#         Logout.loginscreen()
+#     button2 = Button(usermode.second.bottom_frame,text="로그아웃")
+#     button2.pack(side=BOTTOM)
+#     button2.bind('<Button-1>',evend_logout)
+
 #관리자모드 시작, 실시간==============================================
 
 class powermode : 
@@ -225,6 +231,8 @@ class powermode :
 
         f2=Frame(frame1)#인물정보를 나타낼 윈도우 상의 top_frame을 지정
         f2.pack(fill = "both", expand=YES)
+
+        
 
         label1=tk.Label(f2,text='cam')
         label1.place(relwidth = 1, relheight=1)
@@ -243,6 +251,7 @@ class powermode :
 
         show_frame()
 
+        
         def evend_logout(event):
             print("성공")
             frame1.destroy()
@@ -255,7 +264,7 @@ class powermode :
 
         frame2=tk.Frame(window)
         notebook.add(frame2, text="학생")
-
+        
         label2=tk.Label(frame2, text="페이지2의 내용")
         label2.pack()
 
@@ -300,6 +309,7 @@ class powermode :
         notebook.add(frame1, text="실시간")
         notebook.pack()
 
+
         frame2 = Frame(window)
         notebook.add(frame2, text="두번째탭")
         notebook.pack()
@@ -310,6 +320,7 @@ class powermode :
 
     #로그아웃 함수 및 버튼 생성=======================================
         def evend_logout(event):
+            print("성공")
             frame1.destroy()
             frame2.destroy()
             Login(window)
