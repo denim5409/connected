@@ -1445,59 +1445,59 @@
 
 
 
-//##다각형에서 외곽선 그리기
-#include <opencv2/opencv.hpp>
-#include <iostream>
-
-using namespace cv;
-using namespace std;
-
-
-int main()
-{
-
-    Scalar green(0, 255, 0);
-    Scalar red(0, 0, 255);
-    Scalar yellow(0, 255, 255);
-
-    Mat src, gray;//
-    src = imread("C:/Users/w/ipynb_200617/images/poly2.jpg", IMREAD_COLOR);
-    if (src.empty())
-    {
-        cout << "이미지 파일을 읽을 수 없습니다." << endl;
-        return -1;
-    }
-
-    Mat src_copy = src.clone();//개별 복사(원본 안바뀜)
-
-    cvtColor(src_copy, src_copy, COLOR_BGR2GRAY);
-    threshold(src_copy, src_copy, 87, 255, THRESH_BINARY);
-
-    Mat kernel = getStructuringElement(MORPH_RECT, Size(5, 5));
-    morphologyEx(src_copy, src_copy, MORPH_CLOSE, kernel);
-
-    vector<vector<Point>> contours;
-    findContours(src_copy, contours, RETR_CCOMP, CHAIN_APPROX_NONE);
-
-
-    int font = FONT_HERSHEY_COMPLEX;
-    double fontScale = 0.8;
-    int thickness = 1;
-
-    for (int i = 0; i < contours.size(); i++) {
-        double c_area = contourArea(contours[i]);
-        if (c_area > 5000.0) {
-            drawContours(src, contours, i, red, 2);
-            cout << contourArea(contours[i], false) << endl;
-            ostringstream o_string;
-            o_string << to_string(i) << " : " << contourArea(contours[i]);
-            putText(src, o_string.str(), contours[i][0], font, fontScale, Scalar(0, 255, 0), thickness);
-            imshow("src", src);
-            waitKey(0);
-        }
-    }
-    destroyAllWindows();
-    return 0;
-
-}
+////##다각형에서 외곽선 그리기, 면적 구하기
+//#include <opencv2/opencv.hpp>
+//#include <iostream>
+//
+//using namespace cv;
+//using namespace std;
+//
+//
+//int main()
+//{
+//
+//    Scalar green(0, 255, 0);
+//    Scalar red(0, 0, 255);
+//    Scalar yellow(0, 255, 255);
+//
+//    Mat src, gray;//
+//    src = imread("C:/Users/w/ipynb_200617/images/poly2.jpg", IMREAD_COLOR);
+//    if (src.empty())
+//    {
+//        cout << "이미지 파일을 읽을 수 없습니다." << endl;
+//        return -1;
+//    }
+//
+//    Mat src_copy = src.clone();//개별 복사(원본 안바뀜)
+//
+//    cvtColor(src_copy, src_copy, COLOR_BGR2GRAY);
+//    threshold(src_copy, src_copy, 87, 255, THRESH_BINARY);
+//
+//    Mat kernel = getStructuringElement(MORPH_RECT, Size(5, 5));
+//    morphologyEx(src_copy, src_copy, MORPH_CLOSE, kernel);
+//
+//    vector<vector<Point>> contours;
+//    findContours(src_copy, contours, RETR_CCOMP, CHAIN_APPROX_NONE);
+//
+//
+//    int font = FONT_HERSHEY_COMPLEX;
+//    double fontScale = 0.8;
+//    int thickness = 1;
+//
+//    for (int i = 0; i < contours.size(); i++) {
+//        double c_area = contourArea(contours[i]);
+//        if (c_area > 5000.0) {
+//            drawContours(src, contours, i, red, 2);
+//            cout << contourArea(contours[i], false) << endl;
+//            ostringstream o_string;
+//            o_string << to_string(i) << " : " << contourArea(contours[i]);
+//            putText(src, o_string.str(), contours[i][0], font, fontScale, Scalar(0, 255, 0), thickness);
+//            imshow("src", src);
+//            waitKey(0);
+//        }
+//    }
+//    destroyAllWindows();
+//    return 0;
+//
+//}
 
