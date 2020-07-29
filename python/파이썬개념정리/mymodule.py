@@ -1,0 +1,10 @@
+class _Cal1:
+    def plus(self,a,b):
+        return a+b
+    def minus(self,a,b):
+        return a-b
+class Cal2:
+    def multiply(self,a,b):
+        return a*b
+    def divide(self,a,b):
+        return a/b

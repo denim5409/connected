@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>564</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="photo">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>600</width>
+     <height>450</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>images/pawns.jpg</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="find">
+   <property name="geometry">
+    <rect>
+     <x>1093</x>
+     <y>10</y>
+     <width>80</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>찾기</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="text">
+   <property name="geometry">
+    <rect>
+     <x>16</x>
+     <y>13</y>
+     <width>1061</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="photo2">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>70</y>
+     <width>600</width>
+     <height>450</height>
+    </rect>
+   </property>
+   <property name="pixmap">
+    <pixmap>images/cat.jpg</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="run">
+   <property name="geometry">
+    <rect>
+     <x>1190</x>
+     <y>10</y>
+     <width>80</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
